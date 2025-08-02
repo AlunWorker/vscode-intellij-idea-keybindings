@@ -4,6 +4,14 @@
 
 Port of IntelliJ IDEA key bindings for VS Code. Includes keymaps for popular JetBrains products like IntelliJ Ultimate, WebStorm, PyCharm, PHP Storm, etc.
 
+## 📚 文档
+
+- [📖 用户指南](docs/USER_GUIDE.md) - 详细的使用说明和配置指南
+- [🔧 开发者指南](docs/DEVELOPER_GUIDE.md) - 开发环境设置和贡献流程
+- [📋 API参考](docs/API_REFERENCE.md) - 完整的API文档
+- [📖 技术文档](docs/DOCUMENTATION.md) - 项目架构和功能说明
+- [📚 文档中心](docs/README.md) - 所有文档的导航中心
+
 ### Editing
 
 Linux, Windows | macOS | Feature | Supported
