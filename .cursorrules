@@ -1,5 +1,8 @@
 # Cursor Rules for IntelliJ IDEA Keybindings VS Code Extension
 
+## 重要说明
+**始终用中文回复** - 所有代码注释、文档、用户交互和错误消息都应使用中文。
+
 ## Project Overview
 This is a VS Code extension that ports IntelliJ IDEA keybindings to VS Code. The project converts IntelliJ XML keymap files to VS Code JSON keybindings format.
 
@@ -40,9 +43,10 @@ This is a VS Code extension that ports IntelliJ IDEA keybindings to VS Code. The
 
 ### Error Handling
 - Use try-catch blocks for file operations
-- Provide meaningful error messages to users
+- Provide meaningful error messages to users in Chinese
 - Handle edge cases gracefully (e.g., file not found, invalid XML)
 - Use VS Code's notification system for user feedback
+- All error messages and user-facing text should be in Chinese
 
 ### Performance
 - Avoid synchronous file operations in the main thread
@@ -66,15 +70,16 @@ This is a VS Code extension that ports IntelliJ IDEA keybindings to VS Code. The
 - Test cross-platform compatibility (Windows, macOS, Linux)
 
 ### Documentation
-- Add JSDoc comments for public functions
+- Add JSDoc comments for public functions in Chinese
 - Update README.md for new features
 - Document any breaking changes in CHANGELOG.md
+- All code comments and documentation should be written in Chinese
 
 ## Common Patterns
 
 ### File Operations
 ```typescript
-// Use async file operations
+// 使用异步文件操作
 const content = await vscode.workspace.fs.readFile(uri);
 const text = new TextDecoder().decode(content);
 ```
@@ -83,23 +88,23 @@ const text = new TextDecoder().decode(content);
 ```typescript
 context.subscriptions.push(
     vscode.commands.registerCommand('command.id', async () => {
-        // Command implementation
+        // 命令实现
     })
 );
 ```
 
 ### User Input
 ```typescript
-// Use VS Code's built-in pickers and dialogs
+// 使用 VS Code 内置的选择器和对话框
 const result = await vscode.window.showQuickPick(options);
 ```
 
 ### Error Handling
 ```typescript
 try {
-    // Operation
+    // 执行操作
 } catch (error) {
-    vscode.window.showErrorMessage(`Error: ${error.message}`);
+    vscode.window.showErrorMessage(`错误: ${error.message}`);
 }
 ```
 
@@ -125,3 +130,4 @@ try {
 - Maintain backward compatibility with existing keybinding formats
 - Consider performance when processing large keymap files
 - Follow VS Code extension marketplace guidelines for publishing
+- **重要**: 所有用户界面文本、错误消息、注释和文档都应使用中文
