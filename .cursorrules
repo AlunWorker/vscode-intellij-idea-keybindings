@@ -1,0 +1,127 @@
+# Cursor Rules for IntelliJ IDEA Keybindings VS Code Extension
+
+## Project Overview
+This is a VS Code extension that ports IntelliJ IDEA keybindings to VS Code. The project converts IntelliJ XML keymap files to VS Code JSON keybindings format.
+
+## Architecture
+- **Main Entry**: `src/extension.ts` - Extension activation and command registration
+- **Core Logic**: `src/importer/` - Contains all keybinding conversion logic
+  - `model/` - Data models and interfaces
+  - `parser/` - XML/JSON parsing logic
+  - `reader/` - File reading and user input handling
+  - `writer/` - File output and VS Code integration
+  - `generator/` - JSON generation for VS Code keybindings
+  - `syntax-analyzer/` - Core conversion logic
+  - `extension/` - VS Code extension-specific functionality
+
+## Code Style & Standards
+
+### TypeScript
+- Use strict TypeScript configuration (already configured in tsconfig.json)
+- Prefer explicit typing over `any` - use proper interfaces and types
+- Use `eslint-disable-next-line` comments sparingly and only when necessary
+- Follow the existing naming conventions:
+  - PascalCase for classes and interfaces
+  - camelCase for variables and functions
+  - UPPER_SNAKE_CASE for constants
+
+### VS Code Extension Development
+- Import `vscode` as `* as vscode` at the top of files
+- Register commands in the `activate` function using `context.subscriptions.push()`
+- Use async/await for VS Code API calls
+- Follow VS Code extension lifecycle patterns
+- Use proper error handling for file operations and user interactions
+
+### File Organization
+- Keep related functionality in the same directory
+- Use descriptive file names that reflect their purpose
+- Maintain the existing directory structure in `src/importer/`
+- Place utility functions in appropriate modules
+
+### Error Handling
+- Use try-catch blocks for file operations
+- Provide meaningful error messages to users
+- Handle edge cases gracefully (e.g., file not found, invalid XML)
+- Use VS Code's notification system for user feedback
+
+### Performance
+- Avoid synchronous file operations in the main thread
+- Use async file reading/writing
+- Minimize memory usage when processing large XML files
+- Consider streaming for very large files
+
+## Development Guidelines
+
+### Adding New Features
+1. Follow the existing architecture pattern
+2. Add proper TypeScript interfaces for new data structures
+3. Update the main extension.ts if adding new commands
+4. Add appropriate error handling
+5. Update package.json if adding new dependencies
+
+### Testing
+- Test with various IntelliJ XML keymap files
+- Verify conversion accuracy
+- Test error scenarios (invalid files, missing files)
+- Test cross-platform compatibility (Windows, macOS, Linux)
+
+### Documentation
+- Add JSDoc comments for public functions
+- Update README.md for new features
+- Document any breaking changes in CHANGELOG.md
+
+## Common Patterns
+
+### File Operations
+```typescript
+// Use async file operations
+const content = await vscode.workspace.fs.readFile(uri);
+const text = new TextDecoder().decode(content);
+```
+
+### Command Registration
+```typescript
+context.subscriptions.push(
+    vscode.commands.registerCommand('command.id', async () => {
+        // Command implementation
+    })
+);
+```
+
+### User Input
+```typescript
+// Use VS Code's built-in pickers and dialogs
+const result = await vscode.window.showQuickPick(options);
+```
+
+### Error Handling
+```typescript
+try {
+    // Operation
+} catch (error) {
+    vscode.window.showErrorMessage(`Error: ${error.message}`);
+}
+```
+
+## Dependencies
+- `fast-xml-parser` - For parsing IntelliJ XML files
+- `path-browserify` - For cross-platform path handling
+- VS Code extension API - For VS Code integration
+
+## Build & Development
+- Use `npm run compile` to build the extension
+- Use `npm run watch` for development with auto-rebuild
+- Use `npm run package` for production builds
+- Use `npm run lint` to check code quality
+
+## Key Files to Understand
+- `src/extension.ts` - Main extension entry point
+- `src/importer/syntax-analyzer/IntelliJSyntaxAnalyzer.ts` - Core conversion logic
+- `src/importer/model/` - Data structures and interfaces
+- `package.json` - Extension configuration and dependencies
+
+## Notes
+- The project supports both Node.js and web environments
+- Maintain backward compatibility with existing keybinding formats
+- Consider performance when processing large keymap files
+- Follow VS Code extension marketplace guidelines for publishing
