@@ -53,7 +53,10 @@
         "watch": "webpack --watch",
         "package": "webpack --mode production --devtool hidden-source-map",
         "lint": "eslint . --ext .ts,.tsx",
-        "usage": "node ./src/tool/gene-keybind-markdown.js"
+        "usage": "node ./src/tool/gene-keybind-markdown.js",
+        "docs": "node scripts/generate-docs.js",
+        "docs:validate": "node scripts/generate-docs.js validate",
+        "docs:update": "node scripts/generate-docs.js update"
     },
     "icon": "index.png",
     "license": "MIT",
